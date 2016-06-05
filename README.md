@@ -20,7 +20,7 @@ recursiveInstaller([<Strings of paths containing modules to install npm dependen
 
 ```
 const recursiveInstaller = require('recursive-installer');
-moduleLinker.linker(['/home/eric/app', '/home/eric/nodeJsModules'], '--production').then(() => {
+recursiveInstaller(['/home/eric/app', '/home/eric/nodeJsModules'], '--production').then(() => {
     console.log('all done');
 });
 ```
