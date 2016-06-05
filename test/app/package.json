@@ -1,0 +1,23 @@
+{
+  "name": "sample-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "licenses": [
+    {
+      "type": "MIT License",
+      "url": "http://mit-license.org/"
+    }
+  ],
+  "dependencies": {
+      "bluebird": "3.x"
+  },
+  "devDependencies": {
+  },
+  "localDependencies": ["user-store"],
+  "license": "MIT",
+  "directories": {
+  },
+  "scripts": {
+      "start": "node index.js"
+  }
+}

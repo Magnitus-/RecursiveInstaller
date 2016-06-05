@@ -1,0 +1,21 @@
+{
+  "name": "sort-array",
+  "version": "1.0.0",
+  "main": "index.js",
+  "licenses": [
+    {
+      "type": "MIT License",
+      "url": "http://mit-license.org/"
+    }
+  ],
+  "dependencies": {
+      "bluebird": "3.x"
+  },
+  "devDependencies": {
+  },
+  "license": "MIT",
+  "directories": {
+  },
+  "scripts": {
+  }
+}

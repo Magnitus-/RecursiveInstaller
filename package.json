@@ -1,0 +1,29 @@
+{
+  "name": "recursive-installer",
+  "version": "1.0.0",
+  "description": "Library that recursively install npm module dependencies",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Magnitus-/RecursiveInstaller"
+  },
+  "bugs": {
+    "url": "http://github.com/Magnitus-/RecursiveInstaller/issues",
+    "email": "eric_vallee@webificservices.com"
+  },
+  "scripts": {
+    "test": "./node_modules/nodeunit/bin/nodeunit test"
+  },
+  "author": "Eric Vallee (eric_vallee@webificservices.com)",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "3.x",
+    "act-on-modules": "0.1.0"
+  },
+  "devDependencies": {
+    "nodeunit": "0.9.1"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
