@@ -1,6 +1,6 @@
 #Purpose
 
-The module linker is a tool to recursively install npm dependencies in modules.
+The recursive installer is a tool to recursively install npm dependencies in modules.
 
 #Behavior
 
