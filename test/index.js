@@ -17,7 +17,7 @@ exports.test = {
     },
     'basic_functionality': function(test) {
         test.expect(1);
-        recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')]).then(() => {
+        recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], null, 1024 * 500).then(() => {
             try
             {
                 fs.accessSync(path.join(__dirname, 'app', 'node_modules'), fs.F_OK);

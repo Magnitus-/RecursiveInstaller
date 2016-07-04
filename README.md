@@ -13,7 +13,7 @@ It uses 'npm install' for installing and 'act-on-modules' project to find module
 
 ```
 const recursiveInstaller = require('recursive-installer');
-recursiveInstaller([<Strings of paths containing modules to install npm dependencies on>], <optional argument to append to the npm install command>) //Returns a promise
+recursiveInstaller([<Strings of paths containing modules to install npm dependencies on>], <optional argument to append to the npm install command>, <optional maxBuffer value for stdout/stderr size limits of subprocesses>) //Returns a promise
 ```
 
 ##Example
