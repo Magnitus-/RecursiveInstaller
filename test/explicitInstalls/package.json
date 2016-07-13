@@ -1,0 +1,13 @@
+{
+  "name": "test",
+  "version": "0.1.0",
+  "description": "test",
+  "author": "Eric Vallee <eric_vallee@webificservices.com>",
+  "main": "./index.js",
+  "dependencies": {
+      "mongodb": "2.x"
+  },
+  "scripts": {
+      "start": "node ./index.js"
+  }
+}
