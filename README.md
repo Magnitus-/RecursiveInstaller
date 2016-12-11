@@ -23,9 +23,6 @@ recursiveInstaller([<Strings of paths containing modules to install npm dependen
 
 - tool: Tool that should perform the module install. Currently, the library supports 'npm' and 'yarn'. Npm is the default if this option is omitted.
 
-optional argument to append to the npm install command 
-optional maxBuffer value for stdout/stderr size limits of subprocesses
-
 ##Example
 
 ```
