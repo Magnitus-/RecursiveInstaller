@@ -23,6 +23,8 @@ recursiveInstaller([<Strings of paths containing modules to install npm dependen
 
 - tool: Tool that should perform the module install. Currently, the library supports 'npm' and 'yarn'. Npm is the default if this option is omitted.
 
+- lock: Useful if you expect several process to try npm install in the same folder concurrently. In this case, setting this option to true will causes the processes to try generate a 'installation_lock' file before installing and not try to install in the same folder concurrently.
+
 ##Example
 
 ```

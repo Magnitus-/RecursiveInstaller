@@ -1,6 +1,6 @@
 {
   "name": "recursive-installer",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Library that recursively install npm module dependencies",
   "main": "./lib/index.js",
   "repository": {

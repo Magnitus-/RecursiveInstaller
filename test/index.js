@@ -98,6 +98,104 @@ exports.test = {
         }).finally(() => {
             test.done();
         });
-    }
+    },
+    'conflicting_installations_npm': function(test) {
+        test.expect(1);
+        Promise.all([
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'maxBuffer': 1024*1024*5, 'lock': true}),
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'maxBuffer': 1024*1024*5, 'lock': true}),
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'maxBuffer': 1024*1024*5, 'lock': true}),
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'maxBuffer': 1024*1024*5, 'lock': true}),
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'maxBuffer': 1024*1024*5, 'lock': true}),
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'maxBuffer': 1024*1024*5, 'lock': true})
+        ]).then(() => {
+            try
+            {
+                fs.accessSync(path.join(__dirname, 'app', 'node_modules'), fs.F_OK);
+                fs.accessSync(path.join(__dirname, 'shared', 'user-store', 'node_modules'), fs.F_OK);
+                fs.accessSync(path.join(__dirname, 'shared', 'array', 'capitalize-array', 'node_modules'), fs.F_OK);
+                fs.accessSync(path.join(__dirname, 'shared', 'array', 'sort-array', 'node_modules'), fs.F_OK);
+                test.ok(true, 'Ensuring that all modules got their dependencies installed properly');
+            }
+            catch(err)
+            {
+                console.log(err);
+            }
+        }).catch((err) => {
+            console.log(err);
+        }).finally(() => {
+            test.done();
+        });
+    },
+    'conflicting_installations_yarn': function(test) {
+        test.expect(2);
+        var exceptions = 0;
+        Promise.all([
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'tool': 'yarn', 'maxBuffer': 1024*1024*5, 'arguments': '--no-lockfile', 'lock': true}),
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'tool': 'yarn', 'maxBuffer': 1024*1024*5, 'arguments': '--no-lockfile', 'lock': true}),
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'tool': 'yarn', 'maxBuffer': 1024*1024*5, 'arguments': '--no-lockfile', 'lock': true}),
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'tool': 'yarn', 'maxBuffer': 1024*1024*5, 'arguments': '--no-lockfile', 'lock': true}),
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'tool': 'yarn', 'maxBuffer': 1024*1024*5, 'arguments': '--no-lockfile', 'lock': true}),
+            recursiveInstaller([path.join(__dirname, 'app'), path.join(__dirname, 'shared')], {'tool': 'yarn', 'maxBuffer': 1024*1024*5, 'arguments': '--no-lockfile', 'lock': true})
+        ]).then(() => {
+            try
+            {
+                fs.accessSync(path.join(__dirname, 'app', 'node_modules'), fs.F_OK);
+                fs.accessSync(path.join(__dirname, 'shared', 'user-store', 'node_modules'), fs.F_OK);
+                fs.accessSync(path.join(__dirname, 'shared', 'array', 'capitalize-array', 'node_modules'), fs.F_OK);
+                fs.accessSync(path.join(__dirname, 'shared', 'array', 'sort-array', 'node_modules'), fs.F_OK);
+                test.ok(true, 'Ensuring that all modules got their dependencies installed properly');
+            }
+            catch(err)
+            {
+                console.log(err);
+            }
+        }).then(() => {
+            return Promise.all([
+                new Promise((resolve, reject) => {    
+                    try {
+                        fs.accessSync(path.join(__dirname, 'app', 'yarn.lock'), fs.F_OK);
+                        resolve();
+                    } catch(err) {
+                        exceptions++;
+                        resolve();
+                    }
+                }),
+                new Promise((resolve, reject) => {    
+                    try {
+                        fs.accessSync(path.join(__dirname, 'shared', 'user-store', 'yarn.lock'), fs.F_OK);
+                        resolve();
+                    } catch(err) {
+                        exceptions++;
+                        resolve();
+                    }
+                }),
+                new Promise((resolve, reject) => {    
+                    try {
+                        fs.accessSync(path.join(__dirname, 'shared', 'array', 'capitalize-array', 'yarn.lock'), fs.F_OK);
+                        resolve();
+                    } catch(err) {
+                        exceptions++;
+                        resolve();
+                    }
+                }),
+                new Promise((resolve, reject) => {    
+                    try {
+                        fs.accessSync(path.join(__dirname, 'shared', 'array', 'sort-array', 'yarn.lock'), fs.F_OK);
+                        resolve();
+                    } catch(err) {
+                        exceptions++;
+                        resolve();
+                    }
+                })
+            ]);
+        }).then(() => {
+            test.ok(exceptions === 4, "Ensure that argument to not generate lock files was properly passed")
+        }).catch((err) => {
+            console.log(err);
+        }).finally(() => {
+            test.done();
+        });
+    },
 };
 
